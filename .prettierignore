@@ -1,0 +1,21 @@
+# Source Code
+**/.git
+**/.svn
+**/.hg
+
+# IDE
+*.iml
+*.ipr
+*.iws
+/.idea
+**/.vscode
+
+# Miscellaneous
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+migrate_working_dir/
