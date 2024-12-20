@@ -39,24 +39,25 @@
       FLUTTER_VERSION = "3.27.1";
       FILENAME = "flutter_linux_${FLUTTER_VERSION}-stable.tar.xz";
       FETCH_URL = "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/${FILENAME}";
-
-      flutterArchive = builtins.fetchurl {
-        url = "${FETCH_URL}";
-        sha256 = "sha256-YUl+tkzXs6qZypkRzNkhyNq3mv2QnKHJ/5VGBn689so=";
-        executable = false;
-      };
     in
 
     {
 
       # A Nixpkgs overlay.
       overlay = final: prev: {
-
         flutter =
           with final;
           stdenv.mkDerivation rec {
-            name = "flutter-${version}";
+            inherit self;
 
+            flutterArchive = builtins.fetchurl {
+              url = "${FETCH_URL}";
+              sha256 = "sha256-YUl+tkzXs6qZypkRzNkhyNq3mv2QnKHJ/5VGBn689so=";
+              executable = false;
+            };
+
+            name = "flutter-${version}";
+            src = self;
             unpackPhase = ":";
             buildPhase = ''
               tar -xvf "${flutterArchive}"
