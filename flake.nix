@@ -29,6 +29,5 @@
           '';
           installPhase = "mkdir -p $out; cp -ar flutter/* $out";
         };
-
     };
 }
