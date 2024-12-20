@@ -8,7 +8,7 @@
     { self, nixpkgs }:
     let
 
-      inherit nixpkgs;
+      # inherit nixpkgs;
 
       # to work with older version of flakes
       lastModifiedDate = self.lastModifiedDate or self.lastModified or "19700101";
@@ -40,7 +40,7 @@
       FILENAME = "flutter_linux_${FLUTTER_VERSION}-stable.tar.xz";
       FETCH_URL = "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/${FILENAME}";
 
-      flutterArchive = nixpkgs.fetchurl {
+      flutterArchive = builtins.fetchurl {
         url = "${FETCH_URL}";
         sha256 = "sha256-YUl+tkzXs6qZypkRzNkhyNq3mv2QnKHJ/5VGBn689so=";
         executable = false;
